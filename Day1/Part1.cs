@@ -3,7 +3,7 @@ using Infrastructure;
 
 namespace Day1;
 
-public partial class Part1(string inputFile)
+public class Part1(string inputFile)
 {
     public int Resolve()
     {
