@@ -14,13 +14,13 @@ public class Part1(string inputFileName)
         {
             for (var x = 0; x < WordSearch[y].Length; x++)
             {
-                if (WordSearch[y][x] != 'X')
+                if (WordSearch[y][x] != WordToFind[0])
                 {
                     continue;
                 }
 
-                var wordSearch = new WordSearch(WordSearch, WordToFind);
-                wordToFindAppears += wordSearch.GetWordOccurrencesInAllDimensions(x, y);
+                var wordSearch = new WordSearch(WordSearch);
+                wordToFindAppears += wordSearch.GetWordOccurrencesInAllDimensions(x, y, WordToFind);
             }
         }
 
