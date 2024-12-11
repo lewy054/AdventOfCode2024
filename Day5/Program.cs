@@ -16,6 +16,6 @@ var part1 = new Part1(pageOrderingRules, pageNumbersOfEachUpdate);
 var part1Result = part1.Resolve();
 Console.WriteLine($"Results of Day5, Part1 : {part1Result}");
 
-// var part2 = new Part2(pageOrderingRules, pageNumbersOfEachUpdate);
-// var part2Result = part2.Resolve();
-// Console.WriteLine($"Results of Day5, Part2 : {part2Result}");
+var part2 = new Part2(pageOrderingRules, pageNumbersOfEachUpdate);
+var part2Result = part2.Resolve();
+Console.WriteLine($"Results of Day5, Part2 : {part2Result}");
