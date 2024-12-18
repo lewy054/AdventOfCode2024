@@ -2,7 +2,7 @@ namespace Day6;
 
 public class Guard(Position position)
 {
-    public Position Position { get; set; } = new Position()
+    public Position Position { get; set; } = new()
     {
         X = position.X,
         Y = position.Y

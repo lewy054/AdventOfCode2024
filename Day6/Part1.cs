@@ -15,12 +15,22 @@ public class Part1(string[] map)
             Y = guardPositionY
         };
         var guard = new Guard(guardPosition);
-        var alreadyVisitedPositions = new List<Position>()
+        var visitedPositions = GetVisitedPositions(guard);
+        return visitedPositions.Count;
+        
+    }
+
+    private List<Position> GetVisitedPositions(Guard guard)
+    {
+        var visitedPositions = new List<Position>()
         {
-            guardPosition
+            new()
+            {
+                X = guard.Position.X,
+                Y = guard.Position.Y
+            }
         };
 
-        var distinctPositions = 1;
         while (true)
         {
             switch (guard.Direction)
@@ -29,7 +39,7 @@ public class Part1(string[] map)
                 {
                     if (guard.Position.Y == 0)
                     {
-                        return distinctPositions;
+                        return visitedPositions;
                     }
 
 
@@ -41,12 +51,11 @@ public class Part1(string[] map)
 
                     guard.Position.Y -= 1;
 
-                    var wasVisited = alreadyVisitedPositions
+                    var wasVisited = visitedPositions
                         .Any(e => e.X == guard.Position.X && e.Y == guard.Position.Y);
                     if (!wasVisited)
                     {
-                        distinctPositions += 1;
-                        alreadyVisitedPositions.Add(new Position()
+                        visitedPositions.Add(new Position()
                         {
                             X = guard.Position.X,
                             Y = guard.Position.Y
@@ -59,7 +68,7 @@ public class Part1(string[] map)
                 {
                     if (guard.Position.X == map[guard.Position.Y].Length - 1)
                     {
-                        return distinctPositions;
+                        return visitedPositions;
                     }
 
 
@@ -70,12 +79,11 @@ public class Part1(string[] map)
                     }
 
                     guard.Position.X += 1;
-                    var wasVisited = alreadyVisitedPositions
+                    var wasVisited = visitedPositions
                         .Any(e => e.X == guard.Position.X && e.Y == guard.Position.Y);
                     if (!wasVisited)
                     {
-                        distinctPositions += 1;
-                        alreadyVisitedPositions.Add(new Position()
+                        visitedPositions.Add(new Position()
                         {
                             X = guard.Position.X,
                             Y = guard.Position.Y
@@ -88,7 +96,7 @@ public class Part1(string[] map)
                 {
                     if (guard.Position.Y == map.Length - 1)
                     {
-                        return distinctPositions;
+                        return visitedPositions;
                     }
 
 
@@ -99,12 +107,11 @@ public class Part1(string[] map)
                     }
 
                     guard.Position.Y += 1;
-                    var wasVisited = alreadyVisitedPositions
+                    var wasVisited = visitedPositions
                         .Any(e => e.X == guard.Position.X && e.Y == guard.Position.Y);
                     if (!wasVisited)
                     {
-                        distinctPositions += 1;
-                        alreadyVisitedPositions.Add(new Position()
+                        visitedPositions.Add(new Position()
                         {
                             X = guard.Position.X,
                             Y = guard.Position.Y
@@ -117,7 +124,7 @@ public class Part1(string[] map)
                 {
                     if (guard.Position.X == 0)
                     {
-                        return distinctPositions;
+                        return visitedPositions;
                     }
 
 
@@ -128,12 +135,11 @@ public class Part1(string[] map)
                     }
 
                     guard.Position.X -= 1;
-                    var wasVisited = alreadyVisitedPositions
+                    var wasVisited = visitedPositions
                         .Any(e => e.X == guard.Position.X && e.Y == guard.Position.Y);
                     if (!wasVisited)
                     {
-                        distinctPositions += 1;
-                        alreadyVisitedPositions.Add(new Position()
+                        visitedPositions.Add(new Position()
                         {
                             X = guard.Position.X,
                             Y = guard.Position.Y
