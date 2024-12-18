@@ -9,22 +9,25 @@ public class Part1(string[] map)
     {
         var guardPositionY = Array.FindIndex(map, e => e.Any(c => c == GuardSymbol));
         var guardPositionX = map[guardPositionY].IndexOf(GuardSymbol);
-        var guard = new Guard(new Position()
+        var guardPosition = new Position()
         {
             X = guardPositionX,
             Y = guardPositionY
-        });
-        var alreadyVisitedPositions = new List<Position>();
+        };
+        var guard = new Guard(guardPosition);
+        var alreadyVisitedPositions = new List<Position>()
+        {
+            guardPosition
+        };
 
-        // var mapOfObstructions = CreateMapOfObstructions(map);
-        var distinctPositions = 0;
+        var distinctPositions = 1;
         while (true)
         {
             switch (guard.Direction)
             {
                 case Guard.MovementDirection.North:
                 {
-                    if (guard.Position.Y == -1)
+                    if (guard.Position.Y == 0)
                     {
                         return distinctPositions;
                     }
@@ -42,7 +45,7 @@ public class Part1(string[] map)
                         .Any(e => e.X == guard.Position.X && e.Y == guard.Position.Y);
                     if (!wasVisited)
                     {
-                        distinctPositions++;
+                        distinctPositions += 1;
                         alreadyVisitedPositions.Add(new Position()
                         {
                             X = guard.Position.X,
@@ -71,7 +74,7 @@ public class Part1(string[] map)
                         .Any(e => e.X == guard.Position.X && e.Y == guard.Position.Y);
                     if (!wasVisited)
                     {
-                        distinctPositions++;
+                        distinctPositions += 1;
                         alreadyVisitedPositions.Add(new Position()
                         {
                             X = guard.Position.X,
@@ -100,7 +103,7 @@ public class Part1(string[] map)
                         .Any(e => e.X == guard.Position.X && e.Y == guard.Position.Y);
                     if (!wasVisited)
                     {
-                        distinctPositions++;
+                        distinctPositions += 1;
                         alreadyVisitedPositions.Add(new Position()
                         {
                             X = guard.Position.X,
@@ -112,7 +115,7 @@ public class Part1(string[] map)
                 }
                 case Guard.MovementDirection.West:
                 {
-                    if (guard.Position.X == -1)
+                    if (guard.Position.X == 0)
                     {
                         return distinctPositions;
                     }
@@ -129,7 +132,7 @@ public class Part1(string[] map)
                         .Any(e => e.X == guard.Position.X && e.Y == guard.Position.Y);
                     if (!wasVisited)
                     {
-                        distinctPositions++;
+                        distinctPositions += 1;
                         alreadyVisitedPositions.Add(new Position()
                         {
                             X = guard.Position.X,
@@ -143,27 +146,5 @@ public class Part1(string[] map)
                     throw new InvalidDataException();
             }
         }
-    }
-
-    private List<Position> CreateMapOfObstructions(string[] input)
-    {
-        var obstructions = new List<Position>();
-
-        for (var y = 0; y < input.Length; y++)
-        {
-            for (var x = 0; x < input[y].Length; x++)
-            {
-                if (input[y][x] == ObstructionsSymbol)
-                {
-                    obstructions.Add(new Position()
-                    {
-                        X = x,
-                        Y = y
-                    });
-                }
-            }
-        }
-
-        return obstructions;
     }
 }
